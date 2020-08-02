@@ -1,9 +1,13 @@
-import 'package:flutter/cupertino.dart';
+import 'package:bmi_calculator/BMI_brain.dart';
+
+import 'results_page.dart';
 import 'package:flutter/material.dart';
-import 'reusable_card.dart';
-import 'card_icon.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'layout_constants.dart';
+import 'package:bmi_calculator/layout_constants.dart';
+import 'package:bmi_calculator/components/bottom_button.dart';
+import 'package:bmi_calculator/components/card_icon.dart';
+import 'package:bmi_calculator/components/reusable_card.dart';
+import 'package:bmi_calculator/components/round_icon_button.dart';
 
 enum Gender { male, female }
 
@@ -54,6 +58,21 @@ class _InputPageState extends State<InputPage> {
     setState(() {
       age--;
     });
+  }
+
+  void moveToResult() {
+    BMIBrain calc = BMIBrain(height: height, weight: weight);
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ResultsPage(
+          bmiResult: calc.calculateBMI(),
+          resultText: calc.getResult(),
+          interpretation: calc.getInterpretation(),
+        ),
+      ),
+    );
   }
 
   @override
@@ -217,34 +236,12 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kAccentColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: kSubmitContainerHeight,
+          BottomButton(
+            title: 'CALCULATE',
+            onClick: moveToResult,
           ),
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.iconData, @required this.onClick});
-  final IconData iconData;
-  final Function onClick;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      constraints: BoxConstraints.tightFor(
-        height: kButtonHeight,
-        width: kButtonWidth,
-      ),
-      shape: CircleBorder(),
-      fillColor: kSecondaryButtonColor,
-      onPressed: onClick,
-      child: Icon(iconData),
     );
   }
 }

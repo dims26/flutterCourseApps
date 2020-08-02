@@ -4,14 +4,32 @@ const kLabelTextStyle = TextStyle(
   fontSize: 18,
   color: kSecondaryAccentColor,
 );
+const kLargeButtonTextStyle = TextStyle(
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+const kHeadingTextStyle = TextStyle(
+  fontSize: 50.0,
+  fontWeight: FontWeight.w900,
+);
+const kResultTextStyle = TextStyle(
+  color: Color(0xFF24D876),
+  fontSize: 22,
+  fontWeight: FontWeight.bold,
+);
+const kBMITextStyle = TextStyle(
+  fontSize: 100,
+  fontWeight: FontWeight.bold,
+);
+const kBodyTextStyle = TextStyle(
+  fontSize: 22,
+);
 const kDividerHeight = SizedBox(
   height: 15.0,
 );
 const kDividerWidth = SizedBox(
   width: 10.0,
 );
-const kHeadingTextStyle =
-    TextStyle(fontSize: 50.0, fontWeight: FontWeight.w900);
 const kIconSize = 80.0;
 
 const kSubmitContainerHeight = 80.0;
